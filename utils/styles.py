@@ -12,8 +12,10 @@ def apply_custom_css():
             padding-bottom: 1rem !important;
         }
         
-        /* Ocultar barra superior y menú nativo por completo */
-        header {visibility: hidden;}
+        /* Hacer la barra superior transparente pero MANTENER el botón funcional */
+        header {background-color: transparent !important;}
+        
+        /* Ocultar solo el menú derecho de Streamlit (los tres puntos) y el pie de página */
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
         
