@@ -60,10 +60,18 @@ carga_por_jugador['color'] = carga_por_jugador['carga'].apply(get_color)
 fig = px.bar(carga_por_jugador, x='nombre', y='carga', 
              color='color', color_discrete_map="identity",
              template="plotly_dark")
-fig.update_layout(showlegend=False, xaxis_title="", yaxis_title="Training Load (AU)", 
-                  margin=dict(l=0, r=0, t=30, b=0),
-                  paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
+fig.update_layout(
+    showlegend=False, 
+    xaxis_title="", 
+    yaxis_title="", 
+    margin=dict(l=0, r=0, t=10, b=0),
+    paper_bgcolor='rgba(0,0,0,0)', 
+    plot_bgcolor='rgba(0,0,0,0)',
+    height=250 # Gráfico más compacto
+)
+# Eliminar las líneas de la grilla trasera
+fig.update_xaxes(showgrid=False, zeroline=False)
+fig.update_yaxes(showgrid=False, zeroline=False, showticklabels=False)
 
-# Línea de carga óptima teórica
-fig.add_hline(y=2500, line_dash="dash", line_color="gray", annotation_text="Límite óptimo")
-st.plotly_chart(fig, use_container_width=True)
+fig.add_hline(y=2500, line_dash="dash", line_color="#8A8A8E", annotation_text="Límite óptimo", annotation_font_color="#8A8A8E")
+st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False}) # Oculta la barra de herramientas del gráfico
