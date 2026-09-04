@@ -2,9 +2,14 @@ import streamlit as st
 import plotly.express as px
 import pandas as pd
 from datetime import datetime, timedelta
+from data.mock_data import generate_mock_data
 
 st.title("Estado del Plantel")
 st.caption("Visión general de carga y disponibilidad (Últimos 7 días)")
+
+# Verificar y cargar los datos si la memoria está vacía
+if 'players_df' not in st.session_state:
+    st.session_state.players_df, st.session_state.sessions_df = generate_mock_data()
 
 players_df = st.session_state.players_df
 sessions_df = st.session_state.sessions_df
